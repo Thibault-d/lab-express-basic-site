@@ -7,12 +7,17 @@ const app = express();
 // Make everything inside of public/ available
 app.use(express.static('public'));
 
+app.set("views", __dirname + "/views");
+app.set("view engine", "hbs");
+
+// send views/index.hbs for displaying in the browser
+app.get("/", (req, res, next) => res.render("index"));
+
 // all my routes
-app.get('/home', (request, response, next) => response.sendFile('C:/Users/Thibault/Desktop/Node/lab-express-basic-site/views/home-page.html'));
-app.get('/about', (request, response, next) => response.sendFile('C:/Users/Thibault/Desktop/Node/lab-express-basic-site/views/about.html'));
-app.get('/works', (request, response, next) => response.sendFile('C:/Users/Thibault/Desktop/Node/lab-express-basic-site/views/works.html'));
-app.get('/gallery', (request, response, next) => response.sendFile('C:/Users/Thibault/Desktop/Node/lab-express-basic-site/views/gallery.html'));
-app.get('/', (request, response, next) => response.sendFile('C:/Users/Thibault/Desktop/Node/lab-express-basic-site/views/home-page.html'));
+app.get("/home", (req, res, next) => res.render("index"));
+app.get("/about", (req, res, next) => res.render("about"));
+app.get("/works", (req, res, next) => res.render("works"));
+app.get("/gallery", (req, res, next) => res.render("gallery"));
 
 // Server Started
 app.listen(3000, () => console.log('Congratulations Thibault, your server is started'));
